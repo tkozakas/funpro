@@ -45,14 +45,38 @@ nRoots a b c
     discriminant = b * b - 4.0 * a * c
 
 -- 5
-smallerRoot::Float -> Float -> Float -> Float
+smallerRoot :: Float -> Float -> Float -> Float
 smallerRoot a b c
   | nRoots a b c == 0 = error "no roots"
   | nRoots a b c == 1 = -b / (2.0 * a)
   | otherwise = (-b - sqrt (b * b - 4.0 * a * c)) / (2.0 * a)
 
-largerRoot::Float -> Float -> Float -> Float
+largerRoot :: Float -> Float -> Float -> Float
 largerRoot a b c
   | nRoots a b c == 0 = error "no roots"
   | nRoots a b c == 1 = -b / (2.0 * a)
   | otherwise = (-b + sqrt (b * b - 4.0 * a * c)) / (2.0 * a)
+
+-- 6
+power2 :: Integer -> Integer
+power2 n
+  | n == 0 = 1
+  | n > 0 = 2 * power2 (n - 1)
+  | n < 0 = 0
+
+-- 7
+mult :: Integer -> Integer -> Integer
+mult m n
+  | m == 0 || n == 0 = 0
+  | m > 0 && n > 0 = m + mult m (n - 1)
+  | m > 0 && n < 0 = -m + mult m (n + 1)
+  | m < 0 && n > 0 = -n + mult (m + 1) n
+  | otherwise = mult (abs m) (abs n)
+
+-- 8
+prod :: Integer -> Integer -> Integer
+prod m n
+  | m > n = error "Invalid range: m must be less than or equal to n"
+  | m == n = m
+  | otherwise = m * prod (m + 1) n 
+  

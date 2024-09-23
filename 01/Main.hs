@@ -10,7 +10,8 @@ nAnd :: Bool -> Bool -> Bool
 nAnd a b = not (a && b)
 
 nAnd' :: Bool -> Bool -> Bool
-nAnd' a b = if a && b then False else True
+nAnd' True b = not b
+nAnd' False b = True
 
 nAnd'' :: Bool -> Bool -> Bool
 nAnd'' True True = False

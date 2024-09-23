@@ -76,7 +76,7 @@ mult m n
 -- 8
 prod :: Integer -> Integer -> Integer
 prod m n
-  | m > n = error "Invalid range: m must be less than or equal to n"
+  | m > n = error "m must be less than or equal to n"
   | m == n = m
   | otherwise = m * prod (m + 1) n 
   

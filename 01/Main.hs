@@ -10,29 +10,20 @@ nAnd :: Bool -> Bool -> Bool
 nAnd a b = not (a && b)
 
 nAnd' :: Bool -> Bool -> Bool
-nAnd' a b = if a && b then False else True
+nAnd' True b = not b
+nAnd' False _ = True
 
 nAnd'' :: Bool -> Bool -> Bool
 nAnd'' True True = False
-nAnd'' True False = True
-nAnd'' False True = True
-nAnd'' False False = True
+nAnd'' _ _ = True
 
 -- 2
 prop_nAnd_eq_nAnd' :: Bool -> Bool -> Bool
-prop_nAnd_eq_nAnd' a b = nAnd a b == nAnd' a b
-
-prop_nAnd_eq_nAnd'' :: Bool -> Bool -> Bool
-prop_nAnd_eq_nAnd'' a b = nAnd a b == nAnd'' a b
-
-prop_nAnd'_eq_nAnd'' :: Bool -> Bool -> Bool
-prop_nAnd'_eq_nAnd'' a b = nAnd' a b == nAnd'' a b
+prop_nAnd_eq_nAnd' a b = (nAnd a b == nAnd' a b) && (nAnd a b == nAnd'' a b)
 
 -- 3
 nDigits :: Integer -> Int
-nDigits n
-  | n < 0 = length (show (abs n))
-  | otherwise = length (show n)
+nDigits n = length (show (abs n))
 
 -- 4
 nRoots :: Float -> Float -> Float -> Int
@@ -66,17 +57,17 @@ power2 n
 
 -- 7
 mult :: Integer -> Integer -> Integer
+mult _ 0 = 0
 mult m n
-  | m == 0 || n == 0 = 0
-  | m > 0 && n > 0 = m + mult m (n - 1)
-  | m > 0 && n < 0 = -m + mult m (n + 1)
-  | m < 0 && n > 0 = -n + mult (m + 1) n
-  | otherwise = mult (abs m) (abs n)
+  | n < 0 = -mult m (-n)
+  | otherwise = mult m (n - 1) + m
+
+prop_mult x y = mult x y == x * y
 
 -- 8
 prod :: Integer -> Integer -> Integer
 prod m n
-  | m > n = error "Invalid range: m must be less than or equal to n"
+  | m > n = error "m must be less than or equal to n"
   | m == n = m
   | otherwise = m * prod (m + 1) n 
   

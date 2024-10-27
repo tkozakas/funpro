@@ -52,6 +52,7 @@ permut (x:xs) ys
 capitalise :: String -> String
 capitalise str = [toUpper c | c <- str, isLetter c]
 
+-- 6
 itemTotal :: [(String, Float)] -> [(String, Float)]
 itemTotal [] = []
 itemTotal ((item, price):xs) = (item, price + sum [p | (i, p) <- xs, i == item]) : itemTotal [(i, p) | (i, p) <- xs, i /= item]

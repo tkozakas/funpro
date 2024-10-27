@@ -50,7 +50,7 @@ permut (x:xs) ys
 
 -- 5
 capitalise :: String -> String
-capitalise str = [toUpper c | c <- str, isAlpha c]
+capitalise str = [toUpper c | c <- str, isLetter c]
 
 itemTotal :: [(String, Float)] -> [(String, Float)]
 itemTotal [] = []

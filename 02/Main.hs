@@ -4,9 +4,11 @@ import Data.Char (toUpper, isAlpha)
 main :: IO ()
 main = putStrLn "Module loaded"
 
+-- 1
 average :: [Float] -> Float
 average xs = sum xs / fromIntegral (length xs)
 
+-- 2
 dividesRec :: Integer -> [Integer]
 dividesRec n = dividesHelper n 1
   where
@@ -21,6 +23,7 @@ dividesLC n = [x | x <- [1..n], n `mod` x == 0]
 isPrime :: Integer -> Bool
 isPrime n = dividesLC n == [1, n]
 
+-- 3
 prefix :: String -> String -> Bool
 prefix [] _ = True
 prefix _ [] = False
@@ -32,6 +35,7 @@ substring xs ys@(y:ys')
   | prefix xs ys = True
   | otherwise = substring xs ys'
 
+-- 4
 permut :: [Integer] -> [Integer] -> Bool
 permut [] [] = True
 permut [] _ = False
@@ -44,6 +48,7 @@ permut (x:xs) ys
       | z == y = ys
       | otherwise = y : remove z ys
 
+-- 5
 capitalise :: String -> String
 capitalise str = [toUpper c | c <- str, isAlpha c]
 

@@ -9,8 +9,8 @@ average :: [Float] -> Float
 average xs = sum xs / fromIntegral (length xs)
 
 -- 2
-dividesRec :: Integer -> [Integer]
-dividesRec n = dividesHelper n 1
+dividesRC :: Integer -> [Integer]
+dividesRC n = dividesHelper n 1
   where
     dividesHelper n i
       | i > n = []

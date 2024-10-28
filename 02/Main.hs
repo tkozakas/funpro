@@ -12,16 +12,17 @@ average xs = sum xs / fromIntegral (length xs)
 dividesRC :: Integer -> [Integer]
 dividesRC n = dividesHelper n 1
   where
-    dividesHelper n i
+    dividesHelper abs n i
       | i > n = []
       | n `mod` i == 0 = i : dividesHelper n (i + 1)
       | otherwise = dividesHelper n (i + 1)
 
 dividesLC :: Integer -> [Integer]
-dividesLC n = [x | x <- [1..n], n `mod` x == 0]
+dividesLC n = [x | x <- [1.. abs n ], n `mod` x == 0]
 
 isPrime :: Integer -> Bool
-isPrime n = dividesLC n == [1, n]
+isPrime n | n <= 0 = False
+          | otherwise = dividesLC n == [1, n]
 
 -- 3
 prefix :: String -> String -> Bool

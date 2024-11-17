@@ -73,7 +73,7 @@ overlaps (Circle (cx, cy) r) (Rectangle (x, y) w h) =
     in distance < r
 
 -- Rectangle vs Circle
-overlaps rect@(Rectangle _ _ _ _) circ@(Circle _ _) = overlaps circ rect
+overlaps rect@(Rectangle _ _ _) circ@(Circle _ _) = overlaps circ rect
 
 -- 2
 myAnyFilter :: (a -> Bool) -> [a] -> Bool

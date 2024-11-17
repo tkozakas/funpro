@@ -80,7 +80,7 @@ myAnyFilter :: (a -> Bool) -> [a] -> Bool
 myAnyFilter p xs = not (null (filter p xs))
 
 myAnyMap :: (a -> Bool) -> [a] -> Bool
-myAnyMap p = not . null . map p
+myAnyMap p xs = or (map p xs)
 
 myAnyFold :: (a -> Bool) -> [a] -> Bool
 myAnyFold p = foldr (\x acc -> p x || acc) False
@@ -93,7 +93,7 @@ myAllFold :: (a -> Bool) -> [a] -> Bool
 myAllFold p = foldr (\x acc -> p x && acc) True
 
 myAllMap :: (a -> Bool) -> [a] -> Bool
-myAllMap p = null . map (not . p)
+myAllMap p xs = and (map p xs)
 
 -- 3
 myUnzip :: [(a, b)] -> ([a], [b])

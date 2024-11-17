@@ -79,14 +79,21 @@ overlaps rect@(Rectangle _ _ _ _) circ@(Circle _ _) = overlaps circ rect
 myAnyFilter :: (a -> Bool) -> [a] -> Bool
 myAnyFilter p xs = not (null (filter p xs))
 
-myAllFilter :: (a -> Bool) -> [a] -> Bool
-myAllFilter p xs = null (filter (not . p) xs)
+myAnyMap :: (a -> Bool) -> [a] -> Bool
+myAnyMap p = not . null . map p
 
 myAnyFold :: (a -> Bool) -> [a] -> Bool
 myAnyFold p = foldr (\x acc -> p x || acc) False
 
+
+myAllFilter :: (a -> Bool) -> [a] -> Bool
+myAllFilter p xs = null (filter (not . p) xs)
+
 myAllFold :: (a -> Bool) -> [a] -> Bool
 myAllFold p = foldr (\x acc -> p x && acc) True
+
+myAllMap :: (a -> Bool) -> [a] -> Bool
+myAllMap p = null . map (not . p)
 
 -- 3
 myUnzip :: [(a, b)] -> ([a], [b])

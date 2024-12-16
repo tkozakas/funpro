@@ -136,12 +136,10 @@ data RegExp
     | Star RegExp           -- Zero or more occurrences of a pattern
     deriving (Show)
 
--- Matches zero or one occurrence of the pattern p
-option :: RegExp -> RegExp
+option :: RegExp -> RegExp -- ?
 option p = Alt Empty p
 
--- Matches one or more occurrences of the pattern p
-plus :: RegExp -> RegExp
+plus :: RegExp -> RegExp -- +
 plus p = Concat p (Star p)
 
 -- 4

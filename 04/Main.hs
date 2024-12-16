@@ -168,9 +168,8 @@ composeResult f g x =
 -- 6
 primes :: [Integer]
 primes = sieve [2..]
-  where
-    sieve (p:xs) = p : sieve [x | x <- xs, x `mod` p /= 0]
-    sieve [] = []
+sieve [] = []
+sieve (p:xs) = p : sieve [x | x <- xs, x `mod` p /= 0]
 
 canBeGoldbach :: Integer -> Bool
 canBeGoldbach n = any (\p -> (n - p) `elem` takeWhile (<= n) primes) (takeWhile (<= n `div` 2) primes)
